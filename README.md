@@ -54,8 +54,11 @@ console.log(state);
 // { response: {donkey: 1, lion:2, monkey:3}, donkey: 1, lion:2, monkey:3, footer: 1 }
 ```
 
-```
-
 # Installation
 Just clone this repo and remove `.git` folder.
 
+Then run:
+
+```
+npm install
+```
