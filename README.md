@@ -1,24 +1,45 @@
-# Why? [![Build Status](https://travis-ci.org/honewatson/immute.js.svg?branch=master)](https://travis-ci.org/honewatson/immute.js)
-:page_with_curl: Boilerplate for npm/node module. Write with ES6 - have compatibility with all node versions.
+# Tiny Immutable data container with events api. [![Build Status](https://travis-ci.org/honewatson/immute.js.svg?branch=master)](https://travis-ci.org/honewatson/immute.js)
+:page_with_curl: Tiny Immutable data container with events api.
 
-This boilerplate is for people who want write code using all ES6 features ( and stage-2 ) but also want/need backwards compatibility with old node versions. 
+## Features
+* Tiny - Less than 7KB minified
+* Set object values by a path string
+* Add event listeners for updates of object properties
 
-# Features
-* Build with [Babel](https://babeljs.io). (ES6 -> ES5)
-* Test with [mocha](https://mochajs.org).
-* Cover with [istanbul](https://github.com/gotwarlost/istanbul).
-* Check with [eslint](eslint.org).
-* Deploy with [Travis](travis-ci.org).
+```javascript
 
-# Commands
-- `npm run clean` - Remove `lib/` directory
-- `npm test` - Run tests. Tests can be written with ES6 (WOW!)
-- `npm test:watch` - You can even re-run tests on file changes!
-- `npm run cover` - Yes. You can even cover ES6 code.
-- `npm run lint` - We recommend using [airbnb-config](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb). It's fantastic.
-- `npm run test:examples` - We recommend writing examples on pure JS for better understanding module usage.
-- `npm run build` - Do some magic with ES6 to create ES5 code.
-- `npm run prepublish` - Hook for npm. Do all the checks before publishing you module.
+var immute = new Immute({});
+
+// Object now has 'donkey' property
+// immute.get().donkey == immute.get().response.donkey
+var donkey = immute => response =>
+    immute.set('donkey', response.donkey);
+
+var lion = immute => response =>
+    immute.set('lion', response.lion);
+
+var monkey = immmute => response =>
+    immute.set('monkey', response.monkey);
+
+var footer = immmute => footer =>
+    immute.set('footer', footer);
+
+immute.on('response', [lion(immute), monkey(immute)]);
+
+// When obj.response.donkey is set, set obj.footer with the same value
+immute.on('response.donkey', footer(immute));
+
+var state = immute.set('response', {
+    donkey: 1,
+    lion: 2,
+    monkey: 3
+}).get();
+
+console.log(state);
+// { response: {donkey: 1, lion:2, monkey:3}, donkey: 1, lion:2, monkey:3, footer: 1 }
+
+
+```
 
 # Installation
 Just clone this repo and remove `.git` folder.

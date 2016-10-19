@@ -43,51 +43,51 @@ describe('Immute', () => {
 
         var immute = new Immute({});
 
-        var breadcrumbs = immute => response =>
-            immute.set('breadcrumbs', response.breadcrumbs);
+        var donkey = immute => response =>
+            immute.set('donkey', response.donkey);
 
-        var facets = immute => response =>
-            immute.set('facets', response.facets);
+        var lion = immute => response =>
+            immute.set('lion', response.lion);
 
-        var content = immmute => response =>
-            immute.set('content', response.content);
+        var monkey = immmute => response =>
+            immute.set('monkey', response.monkey);
 
         var footer = immmute => footer =>
             immute.set('footer', footer);
 
         it('should allow setting a single event callback', function (done) {
-            immute.on('response', breadcrumbs(immute));
+            immute.on('response', donkey(immute));
             done();
         })
         it('should allow setting a list of event callbacks', function (done) {
-            immute.on('response', [facets(immute), content(immute)]);
+            immute.on('response', [lion(immute), monkey(immute)]);
             done();
         })
         it('should trigger path events when the path is set', function (done) {
             var state = immute.set('response', {
-                breadcrumbs: 1,
-                facets: 2,
-                content: 3
+                donkey: 1,
+                lion: 2,
+                monkey: 3
             }).get();
-            assert(state.breadcrumbs == 1);
-            assert(state.facets == 2);
-            assert(state.content == 3);
+            assert(state.donkey == 1);
+            assert(state.lion == 2);
+            assert(state.monkey == 3);
             done();
         });
         it('should trigger events of items deep within an object', function(done) {
-            immute.on('response.breadcrumbs', footer(immute));
-            var state = immute.set('response.breadcrumbs', 'hello').get();
-            assert(state.response.breadcrumbs == 'hello');
+            immute.on('response.donkey', footer(immute));
+            var state = immute.set('response.donkey', 'hello').get();
+            assert(state.response.donkey == 'hello');
             done();
 
         });
         it('should trigger child events when the parent is updated', function(done) {
             var state = immute.set('response', {
-                breadcrumbs: 'goodbye',
-                facets: 4,
-                content: 5
+                donkey: 'goodbye',
+                lion: 4,
+                monkey: 5
             }).get();
-            assert(state.breadcrumbs == 'goodbye');
+            assert(state.donkey == 'goodbye');
             done();
         });
 
