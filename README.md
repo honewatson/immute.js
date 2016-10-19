@@ -6,13 +6,14 @@
 * Set object values by a path string
 * Add event listeners for updates of object properties
 
+## Usage
+
+### Initialise Immute
 ```javascript
-
 var immute = new Immute({});
-
-// Create some event handlers
-
-
+```
+### Create some event handlers
+```javascript
 // Object now has 'donkey' property
 // immute.get().donkey == immute.get().response.donkey
 var donkey = immute => response =>
@@ -26,16 +27,22 @@ var monkey = immute => response =>
 
 var footer = immute => footer =>
     immute.set('footer', footer);
+```
 
-// Register some event listeners to update paths
+### Register some event listeners to update paths
 
+```javascript
 immute.on('response', [lion(immute), monkey(immute)]);
 
 // When obj.response.donkey is set, set obj.footer with the same value
 immute.on('response.donkey', footer(immute));
+```
 
-// Set response property and return state
+### Set response property and return state
 
+Events registered prior are fired when response is set.
+
+```javascript
 var state = immute.set('response', {
     donkey: 1,
     lion: 2,
@@ -44,7 +51,7 @@ var state = immute.set('response', {
 
 console.log(state);
 // { response: {donkey: 1, lion:2, monkey:3}, donkey: 1, lion:2, monkey:3, footer: 1 }
-
+```
 
 ```
 
