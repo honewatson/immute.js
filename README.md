@@ -21,10 +21,10 @@ var donkey = immute => response =>
 var lion = immute => response =>
     immute.set('lion', response.lion);
 
-var monkey = immmute => response =>
+var monkey = immute => response =>
     immute.set('monkey', response.monkey);
 
-var footer = immmute => footer =>
+var footer = immute => footer =>
     immute.set('footer', footer);
 
 // Register some event listeners to update paths
