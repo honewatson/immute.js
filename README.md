@@ -55,10 +55,6 @@ console.log(state);
 ```
 
 # Installation
-Just clone this repo and remove `.git` folder.
-
-Then run:
-
 ```
-npm install
+npm install immute.js
 ```
