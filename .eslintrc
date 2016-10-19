@@ -1,0 +1,11 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+  ],
+  "env": {
+    "mocha": true
+  },
+  "plugins": [
+    "flowtype"
+  ]
+}
