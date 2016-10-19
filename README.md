@@ -10,6 +10,9 @@
 
 var immute = new Immute({});
 
+// Create some event handlers
+
+
 // Object now has 'donkey' property
 // immute.get().donkey == immute.get().response.donkey
 var donkey = immute => response =>
@@ -24,10 +27,14 @@ var monkey = immmute => response =>
 var footer = immmute => footer =>
     immute.set('footer', footer);
 
+// Register some event listeners to update paths
+
 immute.on('response', [lion(immute), monkey(immute)]);
 
 // When obj.response.donkey is set, set obj.footer with the same value
 immute.on('response.donkey', footer(immute));
+
+// Set response property and return state
 
 var state = immute.set('response', {
     donkey: 1,
