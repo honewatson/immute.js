@@ -32,6 +32,7 @@ var footer = immute => footer =>
 ### Register some event listeners to update paths
 
 ```javascript
+// Add a list of event handlers
 immute.on('response', [lion(immute), monkey(immute)]);
 
 // When obj.response.donkey is set, set obj.footer with the same value
