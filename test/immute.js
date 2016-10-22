@@ -38,6 +38,21 @@ describe('Immute', () => {
             assert(orig.b.d.length == 2, 'original was updated');
             done();
         });
+        it('should update array values by position', function(done){
+            immute.set('x', {y: ['a', 'b', 'c']});
+            immute.set('x.y.1', 'bb');
+            immute.set('x.y.0', 'aa');
+            assert(immute.get().x.y[0] == 'aa', 'not updated by position');
+            assert(immute.get().x.y[1] == 'bb', 'not updated by position');
+            done();
+
+        });
+        it('should update array object value by array position', function(done) {
+            immute.set('y', {x: [{a: 'y'}, {b: 'z'}]});
+            immute.set('y.x.1.b', 'zz');
+            assert(immute.get().y.x[1].b == 'zz', 'array object not updated');
+            done();
+        });
     })
     describe('#on() - run callbacks based on path update', function () {
 

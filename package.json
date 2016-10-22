@@ -1,7 +1,7 @@
 {
   "name": "immute.js",
   "author": "Hone Watson",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tiny Immutable Data Structure with Update Events",
   "main": "./lib/index.js",
   "scripts": {
